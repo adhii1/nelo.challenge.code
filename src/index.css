@@ -1,3 +1,181 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+  background-color: #f3f4f6;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+h1 {
+  color: #2563eb;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+input, select {
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: all 0.2s;
+}
+
+input:focus, select:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.3);
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button.add-btn {
+  background-color: #60a5fa;
+  color: white;
+}
+
+button.add-btn:hover {
+  background-color: #3b82f6;
+}
+
+button.edit-btn {
+  background-color: #fbbf24;
+  color: white;
+}
+
+button.edit-btn:hover {
+  background-color: #f59e0b;
+}
+
+button.delete-btn {
+  background-color: #ef4444;
+  color: white;
+}
+
+button.delete-btn:hover {
+  background-color: #dc2626;
+}
+
+button.filter-btn {
+  background-color: #e5e7eb;
+  color: #374151;
+  margin-right: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+button.filter-btn.active {
+  background-color: #60a5fa;
+  color: white;
+  transform: scale(1.05);
+  animation: buttonPop 0.2s ease forwards;
+}
+
+button.filter-btn:hover {
+  background-color: #d1d5db;
+  transform: scale(1.05);
+}
+
+@keyframes buttonPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1.05); }
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #f9fafb;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.task-item.completed {
+  text-decoration: line-through;
+  color: gray;
+  background-color: #d1fae5;
+}
+
+.task-item span {
+  cursor: pointer;
+}
+
+.task-item span:hover {
+  color: #2563eb;
+}
+
+.task-item.added {
+  animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.task-item.removed {
+  animation: fadeOut 0.3s forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); height: 0; margin: 0; padding: 0; }
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@media (max-width: 500px) {
+  .container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  input, select, button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .task-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
